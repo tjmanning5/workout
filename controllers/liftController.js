@@ -20,8 +20,8 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/lift:PLACEHOLDER', function (req, res) {
-        Lift.findOne({ _PLACEHOLDER: req.params.PLACEHOLDER }, function (err, result) {
+    app.get('/lift:id', function (req, res) {
+        Lift.findOne({ _id: req.params.id }, function (err, result) {
             if (err) throw err;
 
             res.json(result);

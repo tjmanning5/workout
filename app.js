@@ -4,9 +4,11 @@ var mongoose = require('mongoose');
 var exerciseController = require('/controllers/exerciseController');
 var liftController = require('/controllers/exerciseController');
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 
 exerciseController(app);
 liftController(app);
+
+mongoose.connect(process.env.MONGODB_URL);
 
 app.listen(port);
