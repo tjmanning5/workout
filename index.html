@@ -17,11 +17,81 @@
         <h1>Linear Progression</h1>
         <h3>Track your weightlifting progress</h3>
     </div>
-    <div class="menu">
-<select><option value=""></option></select>
+
+    <br>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newExercise">
+        Create New Workout
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="newExercise" tabindex="-1" role="dialog" aria-labelledby="newExerciseLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newExerciseLabel">Create Workout</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="text" id="newExerciseName" name="ExerciseName" value="InsertName">
+                    <br>
+                    <button type="button" class="btn btn-primary">Save new Exercise</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="workoutList">
+
     </div>
 
+    <div id="exerciseDropdown">
+        <select id="dropdownList">
 
+        </select>
+    </div>
+
+    <div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newWorkout">
+  Create New Exercise
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newExercise" tabindex="-1" role="dialog" aria-labelledby="newExerciseLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newExerciseLabel">Create Exercise</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form>
+              <input type="text" id="newExerciseName" name="WorkoutName" value="InsertName">
+              <br>
+              <button type="button" class="btn btn-primary">Save new Workout</button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    
 
 
     <script src="scripts.js"></script>
