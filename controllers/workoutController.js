@@ -2,7 +2,7 @@ var Workout = require('workoutModel.js');
 
 module.exports = function (app) {
 
-    app.post('/workout', function (req, res) {
+    app.post('/api/workout', function (req, res) {
 
         var NewWorkout = {
             workoutName: req.body.workoutName
@@ -15,7 +15,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/workout:_id', function (req, res) {
+    app.get('/api/workout/:_id', function (req, res) {
         Workout.findOne({ _id: req.query.id }, function (err, result) {
             if (err) throw err;
 
@@ -23,7 +23,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/workouts', function (req, res) {
+    app.get('/api/workouts', function (req, res) {
         Workout.find({}, function (err, results) {
             if (err) throw err;
 
@@ -31,7 +31,7 @@ module.exports = function (app) {
         });
     });
 
-    app.put('workout', function (req, res) {
+    app.put('/api/workout', function (req, res) {
         Workout.findOne({ _id: req.body.id }, function (err, result) {
             if (err) throw err;
 
@@ -49,7 +49,7 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/workout', function (req, res) {
+    app.delete('/api/workout', function (req, res) {
         Workout.findOne({ _id: req.body.id }, function (err, result) {
             if(err) throw err;
 

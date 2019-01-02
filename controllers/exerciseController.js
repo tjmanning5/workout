@@ -2,10 +2,11 @@ var Exercise = require('exerciseModel.js');
 
 module.exports = function (app) {
 
-    app.post('/exercise', function (req, res) {
+    app.post('/api/exercise', function (req, res) {
 
         var NewExercise = {
-            exerciseName: req.body.exerciseName
+            exerciseName: req.body.exerciseName,
+            workout: req.body.workout
         }
 
         Exercise.create(NewExercise, function (err, result) {
@@ -15,7 +16,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/exercise:_id', function (req, res) {
+    app.get('/api/exercise/:_id', function (req, res) {
         Exercise.findOne({ _id: req.query.id }, function (err, result) {
             if (err) throw err;
 
@@ -23,7 +24,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/exercises', function (req, res) {
+    app.get('/api/exercises', function (req, res) {
         Exercise.find({}, function (err, results) {
             if (err) throw err;
 
@@ -31,7 +32,7 @@ module.exports = function (app) {
         });
     });
 
-    app.put('/exercise', function (req, res) {
+    app.put('/api/exercise', function (req, res) {
         Exercise.findOne({ _id: req.body.id }, function (err, result) {
 
             if (err) throw err;
@@ -52,7 +53,7 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/exercise', function (req, res) {
+    app.delete('/api/exercise', function (req, res) {
         Exercise.findOne({ _id: req.body.id }, function (err, result) {
             if (err) throw err;
 

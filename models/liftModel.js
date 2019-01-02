@@ -3,19 +3,22 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var liftSchema = new Schema({
+    reps: {
+        type: Number,
+        required: true
+    },
+    weight: {
+        type: Number,
+        required: true
+    },
+    time: {
+        type: Date,
+        default: Date.now
+    },
     set: {
-        reps: {
-            type: Number,
-            required: true
-        },
-        weight: {
-            type: Number,
-            required: true
-        },
-        time: {
-            type: Date,
-            default: Date.now
-        }
+        type: ObjectId,
+        ref: 'Exercise',
+        required: true
     }
 });
 

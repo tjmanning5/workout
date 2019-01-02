@@ -7,9 +7,9 @@ var exerciseSchema = new Schema({
         type: String,
         required: true
     },
-    sets: {
+    workout: {
         type: ObjectId,
-        ref: 'Lift',
+        ref: "Workout",
         required: false
     }
 });

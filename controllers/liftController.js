@@ -3,13 +3,14 @@ var Lift = require('liftModel.js');
 
 module.exports = function (app) {
 
-    app.post('/lift', function (req, res) {
+    app.post('/api/lift', function (req, res) {
 
         var NewLift = {
             set: {
                 reps: req.body.reps,
                 weight: req.body.weight,
-                time: Date.now
+                time: Date.now,
+                set: req.body.set
             }
         };
 
@@ -20,7 +21,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/lift:id', function (req, res) {
+    app.get('/api/lift/:id', function (req, res) {
         Lift.findOne({ _id: req.params.id }, function (err, result) {
             if (err) throw err;
 
@@ -28,7 +29,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/lifts', function (req, res) {
+    app.get('/api/lifts', function (req, res) {
         Lift.find({}, function (err, results) {
             if (err) throw err;
 
@@ -36,7 +37,7 @@ module.exports = function (app) {
         });
     });
 
-    app.put('/lift', function (req, res) {
+    app.put('/api/lift', function (req, res) {
         Lift.findOne({ _id: req.body.id }, function (err, result) {
             if (err) throw err;
 
@@ -58,7 +59,7 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/lift', function (req, res) {
+    app.delete('/api/lift', function (req, res) {
         Lift.deleteOne({}, function (err, result) {
             if (err) throw err;
 
