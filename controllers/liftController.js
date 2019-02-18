@@ -1,4 +1,4 @@
-var Lift = require('liftModel.js');
+var Lift = require('../models/liftModel');
 
 
 module.exports = function (app) {

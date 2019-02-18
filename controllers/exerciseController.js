@@ -1,4 +1,4 @@
-var Exercise = require('exerciseModel.js');
+var Exercise = require('../models/exerciseModel');
 
 module.exports = function (app) {
 
