@@ -13,9 +13,9 @@ var liftSchema = new Schema({
     },
     time: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
-    set: {
+    excercise_id: {
         type: ObjectId,
         ref: 'Exercise',
         required: true

@@ -3,17 +3,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var workoutSchema = new Schema({
-    workoutName: {
+    name: {
         type: String,
         required: true
     }, 
-    exercises: {
+    exercise_id: [{
         type: ObjectId,
         ref: 'Exercise', 
         required: false
-    }
+    }]
+
+    //mental note, this might cause the array to equal null
+
 });
 
-var Exercise = mongoose.model('workout', workoutSchema);
+var Workout = mongoose.model('workout', workoutSchema);
 
 module.exports = Workout;

@@ -4,12 +4,11 @@ module.exports = function (app) {
 
     app.post('/api/exercise', function (req, res) {
 
-        var NewExercise = {
-            exerciseName: req.body.exerciseName,
-            workout: req.body.workout
+        var newExercise = {
+            name: req.body.name            
         }
 
-        Exercise.create(NewExercise, function (err, result) {
+        Exercise.create(newExercise, function (err, result) {
             if (err) throw err;
 
             res.json(result);
@@ -37,12 +36,9 @@ module.exports = function (app) {
 
             if (err) throw err;
 
-            if (req.body.exerciseName) {
-                result.exerciseName = req.body.exerciseName;
-            }
-            if (req.body.sets) {
-                result.sets = req.body.sets;
-            }
+            if (req.body.name) {
+                result.name = req.body.name;
+            }           
 
             result.save(function (err, result) {
                 if (err) throw err;
