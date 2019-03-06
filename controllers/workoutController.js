@@ -1,55 +1,69 @@
 var Workout = require('../models/workoutModel');
 
-module.exports = function (app) {
+let controller = {
 
-    app.post('/api/workout', function (req, res) {
+    createOne: function(req, res) {
 
         var newWorkout = {
             name: req.body.name,
             exercise_id: req.body.exercise_id
-        }
+        };
 
-        Workout.create(newWorkout, function (err, result) {
+        Workout.create(newWorkout, function(err, result) {
             if (err) throw err;
 
             res.json(result);
         });
-    });
 
-    app.get('/api/workout/:_id', function (req, res) {
-        Workout.findOne({ _id: req.query.id }, function (err, result) {
+    },
+
+    readOne: function(req, res) {
+
+        Workout.findOne({
+            _id: req.query.id
+        }, function(err, result) {
             if (err) throw err;
 
             res.json(result);
         });
-    });
 
-    app.get('/api/workouts', function (req, res) {
-        Workout.find({}, function (err, results) {
+    },
+
+    readMany: function(req, res) {
+
+        Workout.find({}, function(err, results) {
             if (err) throw err;
 
             res.json(results);
         });
-    });
 
-    app.put('/api/workout', function (req, res) {
-        Workout.findOne({ _id: req.body.id }, function (err, result) {
+    },
+
+    updateOne: function(req, res) {
+
+        Workout.findOne({
+            _id: req.body.id
+        }, function(err, result) {
             if (err) throw err;
 
             if (req.body.name) {
                 result.name = req.body.name;
             }
 
-            result.save(function (err, result) {
+            result.save(function(err, result) {
                 if (err) throw err;
 
                 res.json(result);
             });
         });
-    });
 
-    app.put('/api/workout/add_exercise', function (req, res) {
-        Workout.findOne({ _id: req.body.id }, function (err, result) {
+    },
+
+    addExercise: function(req, res) {
+
+        Workout.findOne({
+            _id: req.body.id
+        }, function(err, result) {
             if (err) throw err;
 
             if (req.body.exercise_id) {
@@ -58,16 +72,20 @@ module.exports = function (app) {
                 }
             }
 
-            result.save(function (err, result) {
+            result.save(function(err, result) {
                 if (err) throw err;
 
                 res.json(result);
             });
         });
-    });
 
-    app.put('/api/workout/remove_exercise', function (req, res) {
-        Workout.findOne({ _id: req.body.id }, function (err, result) {
+    },
+
+    removeExercise: function(req, res) {
+
+        Workout.findOne({
+            _id: req.body.id
+        }, function(err, result) {
             if (err) throw err;
 
             if (req.body.exercise_id) {
@@ -78,20 +96,28 @@ module.exports = function (app) {
                 }
             }
 
-            result.save(function (err, result) {
+            result.save(function(err, result) {
                 if (err) throw err;
 
                 res.json(result);
             });
         });
-    });
 
-    app.delete('/api/workout', function (req, res) {
-        Workout.findOne({ _id: req.body.id }, function (err, result) {
+    },
+
+    deleteOne: function(req, res) {
+
+        Workout.findOne({
+            _id: req.body.id
+        }, function(err, result) {
             if (err) throw err;
 
             res.status(204);
             res.end();
         });
-    });
-}
+
+    }
+
+};
+
+module.exports = controller;
