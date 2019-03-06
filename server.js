@@ -24,7 +24,16 @@ app.set('view engine', 'handlebars');
 mongoose.connect(process.env.MONGODB_URL);
 
 app.get('/', function (req, res) {
+    workoutController
     res.render('home');
+});
+
+app.get('/workout:_id', function (req, res) {
+    res.render('workout');
+});
+
+app.get('/exercise:_id', function (req, res) {
+    res.render('exercise');
 });
 
 app.listen(port);
