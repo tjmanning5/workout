@@ -10,14 +10,14 @@ module.exports = function (app) {
     app.get('/exercise/:_id', exerciseController.readOne);
     app.get('/exercises', exerciseController.readMany);
     app.put('/exercise', exerciseController.updateOne);
-    app.delete('/exercise', exerciseController.deleteOne);
+    app.delete('/exercise/:_id', exerciseController.deleteOne);
 
     //lift
     app.post('/lift', liftController.createOne);
     app.get('/lift/:_id', liftController.readOne);
     app.get('/lifts', liftController.readMany);
     app.put('/lift', liftController.updateOne);
-    app.delete('/lift', liftController.deleteOne);
+    app.delete('/lift/:_id', liftController.deleteOne);
 
     //workout
     app.post('/workout', workoutController.createOne);
@@ -25,8 +25,8 @@ module.exports = function (app) {
     app.get('/workouts', workoutController.readMany);
     app.put('/workout', workoutController.updateOne);
     app.put('/workout/add_exercise', workoutController.addExercise);
-    app.put('workout/remove_exercise', workoutController.removeExercise);
-    app.delete('workout', workoutController.deleteOne);
+    app.put('/workout/remove_exercise', workoutController.removeExercise);
+    app.delete('/workout/:_id', workoutController.deleteOne);
 
     //frontend
 

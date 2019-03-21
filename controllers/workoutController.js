@@ -11,8 +11,17 @@ let controller = {
 
         Workout.create(newWorkout, function (err, result) {
             if (err) throw err;
+            console.log('created', result);
+            res.format({
 
-            res.json(result);
+                'text/html': function () {
+                    res.redirect('/');
+                },
+
+                'application/json': function () {
+                    res.send(result);
+                }
+            });
         });
     },
 
@@ -23,7 +32,12 @@ let controller = {
         }, function (err, result) {
             if (err) throw err;
 
-            res.json(result);
+            res.format({
+
+                html: function () {
+                    res.send(result);
+                }
+            });
         });
     },
 
@@ -32,7 +46,18 @@ let controller = {
         Workout.find({}, function (err, results) {
             if (err) throw err;
 
-            res.json(results);
+            res.format({
+
+                'text/html': function() {
+                    res.render('workouts', {
+                        workouts: results
+                    });
+                },
+
+                'application/json': function () {
+                    res.send(results);
+                }
+            });
         });
     },
 
@@ -50,8 +75,31 @@ let controller = {
             result.save(function (err, result) {
                 if (err) throw err;
 
-                res.json(result);
+                res.format({
+
+                    'text/html': function () {
+                        res.render('workout', {
+                            workout: result
+                        });
+                    },
+
+                    'application/json': function () {
+                        res.send(result);
+                    }
+                });
             });
+        });
+    },
+
+    deleteOne: function (req, res) {
+
+        Workout.deleteOne({
+            _id: req.params._id
+        }, function (err, result) {
+            if (err) throw err;
+
+            res.status(204);
+            res.end();
         });
     },
 

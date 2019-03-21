@@ -61,7 +61,9 @@ let controller = {
 
     deleteOne: function(req, res) {
 
-        Lift.deleteOne({}, function(err, result) {
+        Lift.deleteOne({
+            _id: req.params._id
+        }, function(err, result) {
             if(err) throw err;
 
             res.status(204);

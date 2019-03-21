@@ -11,13 +11,14 @@
                     <button class="btn btn-secondary btn-lg" type="button">
                         Individual Exercises
                     </button>
-                    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Create new excerise</a>
                         {{#each exercises}}
-                            <a class="dropdown-item" href="/exercise/{{this._id}}"> {{this.name}} </a>
+                        <a class="dropdown-item" href="/exercise/{{this._id}}">{{this.name}} </a>
                         {{/each}}
                     </div>
                 </div>
@@ -29,9 +30,10 @@
             <div class="col">
                 <h1>Workouts</h1>
                 <div class="btn-group-vertical">
-                    <button type="button" class="btn brn-secondary">Create a new Workout</button>
+                    <button type="button" class="btn brn-secondary" data-toggle="modal"
+                        data-target="#createWorkoutModal">Create a new Workout</button>
                     {{#each workouts}}
-                        <button href="/workout/{{this._id}}" type="button" class="btn btn-secondary">{{this.name}}</button>
+                    <button href="/workout/{{this._id}}" type="button" class="btn btn-secondary">{{this.name}}</button>
                     {{/each}}
                 </div>
             </div>
@@ -39,21 +41,46 @@
                 <h1>Most Recent Sets</h1>
                 <div class="list-group">
                     {{#each lifts}}
-                        <a href="/lift/{{this._id}}" class="list-group-item list-group-item-action flex-column align-items-start active">
-                            <div class="d-flex w-100 justify-content-between">
-                                {{!-- todo limit results --}}
-                                {{!-- todo sort by created --}}
-                                {{!-- todo No lift name --}}
-                                <h5 class="mb-1">Lift Name</h5>
-                                {{!-- todo format date --}}
-                                <small>{{this.created}}</small>
-                            </div>
-                            <p class="mb-1">reps: {{this.reps}} weight: {{this.weight}}</p>
-                        </a>
+                    <a href="/lift/{{this._id}}"
+                        class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                            {{!-- todo limit results --}}
+                            {{!-- todo sort by created --}}
+                            {{!-- todo No lift name --}}
+                            <h5 class="mb-1">Lift Name</h5>
+                            {{!-- todo format date --}}
+                            <small>{{this.created}}</small>
+                        </div>
+                        <p class="mb-1">reps: {{this.reps}} weight: {{this.weight}}</p>
+                    </a>
                     {{/each}}
                 </div>
             </div>
             <div class="col-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createWorkoutModal" tabindex="-1" role="dialog" aria-labelledby="createWorkout"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createWorkoutModalLabel">New Workout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/workout" method="post">
+                    <div class="form-group">                        
+                        <input type="text" class="form-control" name="name" id="workoutNameInput" aria-describedby="workoutHelp"
+                            placeholder="Workout Title">                        
+                    </div>                   
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>            
         </div>
     </div>
 </div>

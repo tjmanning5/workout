@@ -95,12 +95,14 @@ var controller = {
 
     deleteOne: function (req, res) {
 
-        Exercise.deleteOne({}, function(err, result) {
-            if(err) throw err;
+        Exercise.deleteOne({
+            _id: req.params._id
+        }, function (err, result) {
+            if (err) throw err;
 
             res.status(204);
             res.end();
-        }); 
+        });
     }
 };
 
