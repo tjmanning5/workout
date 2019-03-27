@@ -4,6 +4,8 @@ var controller = {
 
     createOne: function (req, res) {
 
+        console.log(req.body)
+
         var newExercise = {
             name: req.body.name
         };

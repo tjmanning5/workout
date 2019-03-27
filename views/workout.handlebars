@@ -2,24 +2,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-1">
-                <h1 class="dispaly-4">Workout Name</h1>
+            <div class="col">
+                <h1 class="display-4">{{workout.name}}</h1>
             </div>
             <div class="col">
-                <div class="btn-group dropright">
-                    <button class="btn btn-secondary btn-lg" type="button">
-                        Individual Exercises
-                    </button>
-                    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Create new exercise</a>
-                        {{#each exercises}}
-                        <a class="dropdown-item" href="/exercise/{{this._id}}">{{this.name}}</a>
-                        {{/each}}
-                    </div>
+                <div class="col">
+                    <button type="button" class="btn brn-secondary" data-toggle="modal"
+                        data-target="#addExerciseModal">Add Excersie to Workout</button>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -49,10 +38,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col">
-                <button type="button" class="btn brn-secondary" data-toggle="modal" data-target="#addExerciseModal">Add Excersie to Workout</button>
-            </div>
-            <div class="col-1"></div>
+
+            <div class="col-3"></div>
 
         </div>
     </div>
@@ -71,15 +58,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/workout/add_exercise" method="put">
-                    <div class="form-group">                        
-                        <input type="text" class="form-control" name="name" id="exerciseNameInput" aria-describedby="workoutHelp"
-                            placeholder="Exercise Name">                        
-                    </div>                   
-                    
+                <form action="/workout/add_exercise?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <select class="custom-select" name="exercise_id" id="test1">
+                            <option selected>Select Exercise</option>
+                            {{#each exercises}}
+                            <option value={{this._id}}>{{this.name}}</a>
+                            {{/each}}
+                        </select>
+                        <input class="d-none" type="text" name="_id" id="test2" value={{workout._id}} type="hidden">
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>            
+                <br>
+                <br>
+                {{!-- <form action="/" method="put">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" id="exerciseNameInput"
+                            aria-describedby="workoutHelp" placeholder="Or Create New Exercise">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form> --}}
+            </div>
         </div>
     </div>
 </div>

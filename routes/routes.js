@@ -1,7 +1,9 @@
 var exerciseController = require('../controllers/exerciseController');
 var liftController = require('../controllers/liftController');
 var workoutController = require('../controllers/workoutController');
-var homeController = require('../controllers/homeController');
+var Exercise = require('../models/exerciseModel');
+var Lift = require('../models/liftModel');
+var Workout = require('../models/workoutModel');
 
 module.exports = function (app) {
 
@@ -28,7 +30,41 @@ module.exports = function (app) {
     app.put('/workout/remove_exercise', workoutController.removeExercise);
     app.delete('/workout/:_id', workoutController.deleteOne);
 
-    //frontend
+    //frontend routes
 
-    app.get('/', homeController.index);
+    // home
+    app.get('/', function (req, res) {
+
+        Exercise.find({}, function (err, results) {
+
+            if (err) throw err;
+
+            var exercises = results;
+
+            Lift.find({}, function (err, results) {
+
+                if (err) throw err;
+
+                var lifts = results;
+
+                Workout.find({}, function (err, results) {
+
+                    if (err) throw err;
+
+                    var workouts = results;
+
+                    res.render('home', {
+                        exercises: exercises,
+                        lifts: lifts,
+                        workouts: workouts
+                    });
+                });
+            });
+        });
+    });
+
+    // excercise name
+
+
+
 };

@@ -1,4 +1,5 @@
 var Workout = require('../models/workoutModel');
+var Exercise = require('../models/exerciseModel');
 
 let controller = {
 
@@ -28,14 +29,23 @@ let controller = {
     readOne: function (req, res) {
 
         Workout.findOne({
-            _id: req.query._id
+            _id: req.params._id
         }, function (err, result) {
             if (err) throw err;
 
             res.format({
 
-                html: function () {
-                    res.send(result);
+                'text/html': function () {
+                    Exercise.find({}, function (err, results) {
+                        if (err) throw err;
+                        res.render('workout', {
+                            workout: result,
+                            exercises: results
+                        });
+                    });
+                },
+                'application/json': function () {
+                    res.send(results);
                 }
             });
         });
@@ -48,7 +58,7 @@ let controller = {
 
             res.format({
 
-                'text/html': function() {
+                'text/html': function () {
                     res.render('workouts', {
                         workouts: results
                     });
@@ -118,7 +128,18 @@ let controller = {
             result.save(function (err, result) {
                 if (err) throw err;
 
-                res.json(result);
+                res.format({
+
+                    'text/html': function () {
+                        var path = '/workout/' + result._id;
+                        res.redirect(path);
+                    },
+
+                    'application/json': function () {
+                        res.send(result);
+                    }
+
+                });
             });
         });
     },
