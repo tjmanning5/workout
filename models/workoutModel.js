@@ -10,7 +10,7 @@ var workoutSchema = new Schema({
     }, 
     exercise_id: [{
         type: ObjectId,
-        ref: 'Exercise', 
+        ref: 'exercise', 
         required: false
     }]
 

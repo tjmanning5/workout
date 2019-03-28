@@ -28,27 +28,30 @@ let controller = {
 
     readOne: function (req, res) {
 
-        Workout.findOne({
-            _id: req.params._id
-        }, function (err, result) {
-            if (err) throw err;
+        Workout
+            .findOne({
+                _id: req.params._id
+            })
+            .populate('exercise_id')
+            .exec(function (err, result) {
+                if (err) throw err;
 
-            res.format({
+                res.format({
 
-                'text/html': function () {
-                    Exercise.find({}, function (err, results) {
-                        if (err) throw err;
-                        res.render('workout', {
-                            workout: result,
-                            exercises: results
+                    'text/html': function () {
+                        Exercise.find({}, function (err, results) {
+                            if (err) throw err;
+                            res.render('workout', {
+                                workout: result,
+                                exercises: results
+                            });
                         });
-                    });
-                },
-                'application/json': function () {
-                    res.send(results);
-                }
+                    },
+                    'application/json': function () {
+                        res.send(results);
+                    }
+                });
             });
-        });
     },
 
     readMany: function (req, res) {

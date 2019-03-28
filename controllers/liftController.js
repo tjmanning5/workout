@@ -2,7 +2,7 @@ var Lift = require('../models/liftModel');
 
 let controller = {
 
-    createOne: function (req, res) {
+    createOne: function (req, res) {       
 
         var newLift = {
 
@@ -14,7 +14,20 @@ let controller = {
         Lift.create(newLift, function(err, result) {
             if(err) throw err;
 
-            res.json(result);
+            res.format({
+                'text/html': function(){
+                    // var path = '/exercise/' + newLift.exercise_id;
+                    // res.redirect(path);
+
+                    // template literals
+                    var path2 = `/exercise/${newLift.exercise_id}`;
+                    res.redirect(path2);
+                },
+
+                'application/json': function() {
+                    res.send(result);                    
+                }
+            });
         });
     },
 

@@ -18,24 +18,13 @@
             <div class="col">
                 <h1>Exercises</h1>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                    {{#each workout.exercise_id}}
+                    <a href="/exercise/:{{this._id}}" class="list-group-item list-group-item-action flex-column align-items-start active">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 1, Weight: 100lbs</h5>
-                            <small>1 day ago</small>
+                            <h5 class="mb-1">{{this.name}}</h5>                           
                         </div>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 2, Weight: 200lbs</h5>
-                            <small>2 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 3, Weight: 300lbs</h5>
-                            <small>3 days ago</small>
-                        </div>
-                    </a>
+                    {{/each}}                    
                 </div>
             </div>
 
@@ -45,10 +34,8 @@
     </div>
 
 </div>
-</div>
 
-<div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialog" aria-labelledby="addExercise"
-    aria-hidden="true">
+<div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialog" aria-labelledby="addExercise" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

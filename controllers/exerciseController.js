@@ -31,15 +31,20 @@ var controller = {
     readOne: function (req, res) {
 
         Exercise.findOne({
-            _id: req.query._id
+            _id: req.params._id
         }, function (err, result) {
-            if (err) throw err;
-
+            if (err) throw err;            
+           
             res.format({
-
-                html: function () {
+                'text/html': function () {
+                    res.render('exercise', {
+                        exercise: result
+                    });
+                },
+                'application/json': function () {
                     res.send(result);
                 }
+                
             });
         });
     },
