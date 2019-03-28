@@ -6,58 +6,40 @@
                 <h1 class="display-4">{{exercise.name}}</h1>
             </div>
             <div class="col">
-                <div class="btn-group dropright">
-                    <button class="btn btn-secondary btn-lg" type="button">
-                        Individual Exercises
-                    </button>
-                    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Create new Exercise</a>
-                        {{#each exercises}}
-                        <a class="dropdown-item" href="/exercise/{{this._id}}">{{this.name}}</a>
-                        {{/each}}
-                    </div>
+
+                <div class="btn">
+                    <a type="button" class="btn brn-secondary" href="/">Home</a>
                 </div>
             </div>
             <div class="col-1"></div>
         </div>
         <div class="row">
             <div class="col-1"></div>
-             <div class="col">
+            <div class="col">
                 <h1>Lifts</h1>
-                <br> 
+                <br>
                 <div class="col">
-                    <button type="button" class="btn brn-secondary" data-toggle="modal"
-                        data-target="#addLiftModal">Add Set</button>
+                    <button type="button" class="btn brn-secondary" data-toggle="modal" data-target="#addLiftModal">Add
+                        Set</button>
                 </div>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 1, Weight: 100lbs</h5>
-                            <small>1 day ago</small>
-                        </div>                        
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 2, Weight: 200lbs</h5>
-                            <small>2 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Reps: 3, Weight: 300lbs</h5>
-                            <small>3 days ago</small>
-                        </div>
-                    </a>
-                </div>
-            </div>            
-            <div class="col-3"></div>
+                    <ul class="list-group">
+                        {{#each lifts}}
+                        <li class="list-group-item list-group-item-primary">Reps: {{this.reps}}, Weight:
+                            {{this.weight}},
+                            Date: {{this.time}}</li>
+                        <br>
+                        {{/each}}
+                    </ul>
 
+                </div>
+                </a>
+            </div>
+            <div class="col-5"></div>
         </div>
+
     </div>
+</div>
 </div>
 
 <div class="modal fade" id="newExerciseModal" tabindex="-1" role="dialog" aria-labelledby="createExercise"
@@ -72,20 +54,19 @@
             </div>
             <div class="modal-body">
                 <form action="/workout/add_exercise" method="put">
-                    <div class="form-group">                        
-                        <input type="text" class="form-control" name="name" id="exerciseNameInput" aria-describedby="workoutHelp"
-                            placeholder="Exercise Name">                        
-                    </div>                   
-                    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" id="exerciseNameInput"
+                            aria-describedby="workoutHelp" placeholder="Exercise Name">
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="addLiftModal" tabindex="-1" role="dialog" aria-labelledby="createLift"
-    aria-hidden="true">
+<div class="modal fade" id="addLiftModal" tabindex="-1" role="dialog" aria-labelledby="createLift" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -96,19 +77,20 @@
             </div>
             <div class="modal-body">
                 <form action="/lift" method="post">
-                    <div class="form-group">                        
-                        <input type="text" class="form-control" name="reps" id="liftRepsInput" aria-describedby="repsHelp"
-                            placeholder="Reps">                        
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="reps" id="liftRepsInput"
+                            aria-describedby="repsHelp" placeholder="Reps">
                     </div>
-                    <div class="form-group">                        
-                        <input type="text" class="form-control" name="weight" id="liftWeightInput" aria-describedby="weightHelp"
-                            placeholder="Weight">                        
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="weight" id="liftWeightInput"
+                            aria-describedby="weightHelp" placeholder="Weight">
                     </div>
-                    <input class="d-none" type="text" name="exercise_id" id="test2" value={{exercise._id}} type="hidden">                                      
-                    
+                    <input class="d-none" type="text" name="exercise_id" id="test2" value={{exercise._id}}
+                        type="hidden">
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 var Exercise = require('../models/exerciseModel');
+var Lift = require('../models/liftModel');
 
 var controller = {
 
@@ -33,18 +34,31 @@ var controller = {
         Exercise.findOne({
             _id: req.params._id
         }, function (err, result) {
-            if (err) throw err;            
-           
+            if (err) throw err;
+
             res.format({
                 'text/html': function () {
-                    res.render('exercise', {
-                        exercise: result
-                    });
+
+                    Lift
+                        .find({
+                            exercise_id: result._id
+                        })
+                        .sort({ time: -1 })
+                        .exec(function (err, results) {
+                            if (err) throw err;
+
+                            res.render('exercise', {
+                                exercise: result,
+                                lifts: results
+                            });
+                        });
+
                 },
+
                 'application/json': function () {
                     res.send(result);
                 }
-                
+
             });
         });
     },

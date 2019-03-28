@@ -41,7 +41,11 @@ module.exports = function (app) {
 
             var exercises = results;
 
-            Lift.find({}, function (err, results) {
+            Lift.find({})
+            .populate('exercise_id')
+            .sort({ time: -1 })
+            .limit(8)
+            .exec(function (err, results) {
 
                 if (err) throw err;
 

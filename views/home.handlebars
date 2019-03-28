@@ -46,15 +46,15 @@
                 <h1>Most Recent Sets</h1>
                 <div class="list-group">
                     {{#each lifts}}
-                    <a href="/lift/{{this._id}}"
+                    <a href="/exercise/{{this.exercise_id._id}}"
                         class="list-group-item list-group-item-action flex-column align-items-start active">
                         <div class="d-flex w-100 justify-content-between">
                             {{!-- todo limit results --}}
                             {{!-- todo sort by created --}}
                             {{!-- todo No lift name --}}
-                            <h5 class="mb-1"></h5>
+                            <h5 class="mb-1">{{this.exercise_id.name}}</h5>
                             {{!-- todo format date --}}
-                            <small>{{this.created}}</small>
+                            <small>{{this.time}}</small>
                         </div>
                         <p class="mb-1">reps: {{this.reps}} weight: {{this.weight}}</p>
                     </a>
